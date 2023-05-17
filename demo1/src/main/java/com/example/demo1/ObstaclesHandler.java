@@ -25,7 +25,7 @@ public class ObstaclesHandler {
         int width = 25;
         double xPos = planeWidth;
         double space = 300;
-        double recTopHeight = random.nextInt((int)(planeHeight - space - 200)) + 50;
+        double recTopHeight = random.nextInt((int)(planeHeight - space - 100)) + 50;
         double recBottomHeight = planeHeight - space - recTopHeight;
 
         //                                     x      y   width   height

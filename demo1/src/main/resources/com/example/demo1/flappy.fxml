@@ -9,22 +9,27 @@
 
 <AnchorPane fx:id="plane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pressed" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #9b9bf3" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo1.HelloController">
    <children>
-      <Text fx:id="score" layoutX="303.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="163.2734375">
+      <Text fx:id="score" layoutX="666.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="163.2734375">
          <font>
             <Font size="64.0" />
          </font>
       </Text>
-      <Text fx:id="over" layoutX="500" layoutY="450" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+      <Text fx:id="over" layoutX="522" layoutY="321" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
          <font>
             <Font size="60" />
          </font>
       </Text>
 
-      <ImageView fx:id="bird" fitHeight="64.0" fitWidth="66.0" layoutX="200.0" layoutY="219.0">
+      <ImageView fx:id="bird" fitHeight="64.0" fitWidth="66.0" layoutX="186.0" layoutY="215.0">
          <image>
             <Image url="@../../../../../../../../Users/Zeus/Downloads/bird.png" />
          </image>
       </ImageView>
-      <Button prefHeight="70" prefWidth="70" fx:id="playagain" layoutX="-100.0" layoutY="-100.0" mnemonicParsing="false"  onMouseClicked="#OnMouseClicked" text="Play again" />
+      <Button fx:id="playagain" layoutX="-79.0" layoutY="-63.0" mnemonicParsing="false"  onMouseClicked="#OnMouseClicked" prefHeight="70" prefWidth="70" text="Play again" />
+      <Text fx:id="finalscore" layoutX="522.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="655.1999816894531">
+      <font>
+         <Font size="64.0" />
+      </font>
+   </Text>
    </children>
 </AnchorPane>
