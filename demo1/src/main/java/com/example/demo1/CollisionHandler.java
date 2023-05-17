@@ -4,7 +4,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 
-public class ColisionHandler {
+public class CollisionHandler {
 
 
 

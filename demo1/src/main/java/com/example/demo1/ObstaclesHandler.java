@@ -24,8 +24,8 @@ public class ObstaclesHandler {
 
         int width = 25;
         double xPos = planeWidth;
-        double space = 200;
-        double recTopHeight = random.nextInt((int)(planeHeight - space - 100)) + 50;
+        double space = 300;
+        double recTopHeight = random.nextInt((int)(planeHeight - space - 200)) + 50;
         double recBottomHeight = planeHeight - space - recTopHeight;
 
         //                                     x      y   width   height
@@ -42,7 +42,7 @@ public class ObstaclesHandler {
         ArrayList<Rectangle> outOfScreen = new ArrayList<>();
 
         for (Rectangle rectangle: obstacles) {
-            moveRectangle(rectangle, - 0.75);
+            moveRectangle(rectangle, - 2);
 
             if(rectangle.getX() <= -rectangle.getWidth()){
                 outOfScreen.add(rectangle);
