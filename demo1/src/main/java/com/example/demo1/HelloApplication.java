@@ -9,11 +9,12 @@ import java.io.IOException;
 public class HelloApplication extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("flappy.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getRoot().requestFocus();
         stage.setTitle("Flappy Bird!");
         stage.setScene(scene);
+
         stage.show();
     }
 
