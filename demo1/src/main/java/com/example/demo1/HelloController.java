@@ -92,10 +92,6 @@ public class HelloController implements Initializable {
         double yDelta = 0.02;
         birdComponent.moveBirdY(yDelta * accelerationTime);
 
-        if(pointChecker(obstacles, bird)){
-            scoreCounter++;
-            score.setText(String.valueOf(scoreCounter));
-        }
 
         obstaclesHandler.moveObstacles(obstacles);
         if(gameTime % 200 == 0){
@@ -132,15 +128,7 @@ public class HelloController implements Initializable {
 
 
 
-    private boolean pointChecker(ArrayList<Rectangle> obstacles, ImageView bird){
-        for (Rectangle obstacle: obstacles) {
-            int birdPositionX = (int) (bird.getLayoutX() + bird.getX());
-            if(((int)(obstacle.getLayoutX() + obstacle.getX()) == birdPositionX)){
-                return true;
-            }
-        }
-        return false;
-    }
+
 
 
 }
