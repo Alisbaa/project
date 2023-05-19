@@ -138,13 +138,14 @@ public void GameOver(){
         scoreCounter = 0;
         score.setText(String.valueOf(scoreCounter));
         load();
-        update();
 
-birdComponent.moveBirdY(0.02);
 
-                birdComponent.fly();
-                accelerationTime = 0;
-            }
+
+
+    }
+
+
+
 
 
 
