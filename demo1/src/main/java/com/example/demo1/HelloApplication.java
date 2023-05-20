@@ -13,6 +13,7 @@ public class HelloApplication extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getRoot().requestFocus();
         stage.setTitle("Flappy Bird!");
+
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();

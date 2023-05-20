@@ -42,24 +42,24 @@ public class HelloController implements Initializable {
 
     private Bird birdComponent;
     private ObstaclesHandler obstaclesHandler;
-    @FXML
-private Button playagain;
+    public static double obstacleAcceleration = 0;
+
 
     ArrayList<Rectangle> obstacles = new ArrayList<>();
 
-    @FXML
-    private void OnMouseClicked(MouseEvent mouseEvent){
-
-        resetGame();
-
-    }
+//    @FXML
+//    private void OnMouseClicked(MouseEvent mouseEvent){
+//
+//        resetGame();
+//
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         int jumpHeight = 75;
         birdComponent = new Bird(bird, jumpHeight);
-        double planeHeight = 1000;
+        double planeHeight = 1080;
         double planeWidth = 1300;
         obstaclesHandler = new ObstaclesHandler(plane, planeHeight, planeWidth);
 
@@ -88,13 +88,16 @@ private Button playagain;
     private void update() {
         finalscore.setVisible(false);
         gameTime++;
+        obstacleAcceleration=obstacleAcceleration+0.05;
         accelerationTime++;
         double yDelta = 0.02;
         birdComponent.moveBirdY(yDelta * accelerationTime);
 
-        if(pointChecker(obstacles, bird)){
+        if( pointChecker(obstacles,bird)){
+
             scoreCounter++;
-            score.setText(String.valueOf(scoreCounter));
+            score.setText(String.valueOf(scoreCounter)
+            );
         }
         obstaclesHandler.moveObstacles(obstacles);
         if(gameTime % 200 == 0){
@@ -117,32 +120,33 @@ public void GameOver(){
     over.setText("GAME OVER!");
     over.setFill(Color.RED);
     plane.getChildren().removeAll(obstacles);
-    obstacles.clear();
-    playagain.setLayoutY(500);
-    playagain.setLayoutX(650);
+      obstacles.clear();
+
+    gameTime = 0;
+   accelerationTime = 0;
+    plane.getChildren().remove(bird);
     finalscore.setVisible(true);
     finalscore.setText(String.valueOf("Your score: "+scoreCounter));
     plane.getChildren().remove(score);
 
 }
-@FXML
-    private void resetGame(){
-        plane.getChildren().remove(finalscore);
-        plane.getChildren().remove(over);
-        plane.getChildren().remove(playagain);
-        bird.setY(0);
-        plane.getChildren().removeAll(obstacles);
-        obstacles.clear();
-        gameTime = 0;
-        accelerationTime = 0;
-        scoreCounter = 0;
-        score.setText(String.valueOf(scoreCounter));
-        load();
-
-
-
-
-    }
+//@FXML
+//    private void resetGame(){
+//        plane.getChildren().remove(finalscore);
+//        plane.getChildren().remove(over);
+//        plane.getChildren().remove(playagain);
+//        bird.setY(0);
+//        plane.getChildren().removeAll(obstacles);
+//        obstacles.clear();
+//        gameTime = 0;
+//        accelerationTime = 0;
+//        scoreCounter = 0;
+//        score.setText(String.valueOf(scoreCounter));
+//
+//
+//
+//
+//    }
 
 
 
@@ -155,8 +159,9 @@ public void GameOver(){
     private boolean pointChecker(ArrayList<Rectangle> obstacles, ImageView bird){
         for (Rectangle obstacle: obstacles) {
             int birdPositionX = (int) (bird.getLayoutX() + bird.getX());
-            if(((int)(obstacle.getLayoutX() + obstacle.getX()) == birdPositionX)){
-                return true;
+            if(((int)(obstacle.getLayoutX()+ obstacle.getX()) == birdPositionX)){
+               return true;
+
             }
         }
         return false;
