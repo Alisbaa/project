@@ -8,14 +8,23 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-
+import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.scene.input.MouseEvent;
 
 public class Controller implements Initializable {
-
+    
     AnimationTimer gameLoop;
+    
+  
+    @FXML
+    private Text over;
+    @FXML
+    private Text finalscore;
+
 
     @FXML
     private AnchorPane plane;
@@ -34,12 +43,20 @@ public class Controller implements Initializable {
     private Bird birdComponent;
     private ObstaclesHandler obstaclesHandler;
 
-    ArrayList<Rectangle> obstacles = new ArrayList<>();
 
+    @FXML
+    private Button playagain;
+
+
+    ArrayList<Rectangle> obstacles = new ArrayList<>();
+    
+    
+   
+    
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        
         int jumpHeight = 75;
         birdComponent = new Bird(bird, jumpHeight);
         double planeHeight = 1000; //600
@@ -50,6 +67,7 @@ public class Controller implements Initializable {
             @Override
             public void handle(long l) {
                 update();
+                
             }
         };
 
@@ -69,6 +87,8 @@ public class Controller implements Initializable {
 
     //Called every game frame
     private void update() {
+        playagain.setVisible(false);
+        finalscore.setVisible(false);
         gameTime++;
         accelerationTime++;
         double yDelta = 0.02;
@@ -86,7 +106,8 @@ public class Controller implements Initializable {
         }
 
         if(birdComponent.isBirdDead(obstacles, plane)){
-            resetGame();
+           //GameOver();
+          resetGame();
         }
     }
 
@@ -94,8 +115,25 @@ public class Controller implements Initializable {
     private void load(){
         obstacles.addAll(obstaclesHandler.createObstacles());
     }
+ 
+    public void GameOver(){
+        over.setText("GAME OVER!");
+        over.setFill(Color.RED);
+       plane.getChildren().removeAll(obstacles);
+       obstacles.clear();
+        playagain.setLayoutY(500);
+        playagain.setLayoutX(650);
+        playagain.setVisible(true);
+        finalscore.setVisible(true);
+        finalscore.setText(String.valueOf("Your score: "+scoreCounter));
+        plane.getChildren().remove(score);
+       
+    }
 
-    private void resetGame(){
+    public void resetGame(){
+        //plane.getChildren().remove(finalscore);
+      //  plane.getChildren().remove(over);
+       // plane.getChildren().remove(playagain);
         bird.setY(0);
         plane.getChildren().removeAll(obstacles);
         obstacles.clear();
@@ -104,8 +142,14 @@ public class Controller implements Initializable {
         scoreCounter = 0;
         obstacleAcceleration = 0;
         score.setText(String.valueOf(scoreCounter));
+        
     }
 
+    public void reset(){
+        resetGame();
+   
+        
+    }
 
 
     private boolean pointChecker(ArrayList<Rectangle> obstacles, Rectangle bird){
