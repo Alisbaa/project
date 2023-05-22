@@ -23,16 +23,14 @@ public class ObstaclesHandler {
     public ArrayList<Rectangle> createObstacles(){
 
         int width = 25;
-        double xPos = planeWidth;
+        double xPos=planeWidth;
         double space = 300;
-        double recTopHeight = random.nextInt((int)(planeHeight - space - 100));
+        double recTopHeight = random.nextInt((int)(planeHeight - space - 200));
         double recBottomHeight = planeHeight - space - recTopHeight;
-        if(xPos<2000){
-        xPos=xPos+HelloController.obstacleAcceleration*50;}
 
-        if(xPos>2000){
-           xPos=2000;
-        }
+
+
+
 
         //                                     x      y   width   height
         Rectangle rectangleTop = new Rectangle(xPos,0,width,recTopHeight);
@@ -49,7 +47,14 @@ public class ObstaclesHandler {
         ArrayList<Rectangle> outOfScreen = new ArrayList<>();
 
         for (Rectangle rectangle: obstacles) {
-            moveRectangle(rectangle, - HelloController.obstacleAcceleration/10);
+            if(HelloController.obstacleAcceleration<40){
+                moveRectangle(rectangle, -3);
+            }
+            else{
+
+            moveRectangle(rectangle, -3-HelloController.obstacleAcceleration/25);
+
+        }
 
             if(rectangle.getX() <= -rectangle.getWidth()){
                 outOfScreen.add(rectangle);

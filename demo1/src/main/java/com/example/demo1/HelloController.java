@@ -47,12 +47,6 @@ public class HelloController implements Initializable {
 
     ArrayList<Rectangle> obstacles = new ArrayList<>();
 
-//    @FXML
-//    private void OnMouseClicked(MouseEvent mouseEvent){
-//
-//        resetGame();
-//
-//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,7 +54,7 @@ public class HelloController implements Initializable {
         int jumpHeight = 75;
         birdComponent = new Bird(bird, jumpHeight);
         double planeHeight = 1080;
-        double planeWidth = 1300;
+        double planeWidth = 1200;
         obstaclesHandler = new ObstaclesHandler(plane, planeHeight, planeWidth);
 
         gameLoop = new AnimationTimer() {
@@ -100,8 +94,14 @@ public class HelloController implements Initializable {
             );
         }
         obstaclesHandler.moveObstacles(obstacles);
+        if(obstacleAcceleration<40){
         if(gameTime % 200 == 0){
             obstacles.addAll(obstaclesHandler.createObstacles());
+        }}
+        else{
+            if(gameTime % 150 == 0){
+                obstacles.addAll(obstaclesHandler.createObstacles());
+            }
         }
 
         if(birdComponent.isBirdDead(obstacles, plane)){
@@ -124,6 +124,7 @@ public void GameOver(){
 
     gameTime = 0;
    accelerationTime = 0;
+   obstacleAcceleration=0;
     plane.getChildren().remove(bird);
     finalscore.setVisible(true);
     finalscore.setText(String.valueOf("Your score: "+scoreCounter));
@@ -158,11 +159,22 @@ public void GameOver(){
 
     private boolean pointChecker(ArrayList<Rectangle> obstacles, ImageView bird){
         for (Rectangle obstacle: obstacles) {
+
             int birdPositionX = (int) (bird.getLayoutX() + bird.getX());
+            if(obstacleAcceleration<40){
             if(((int)(obstacle.getLayoutX()+ obstacle.getX()) == birdPositionX)){
+
                return true;
 
-            }
+            }}
+            if(obstacleAcceleration>40){
+                System.out.println(obstacles);
+                if(((int)( obstacle.getLayoutX()+obstacle.getX()) <birdPositionX)){
+                    if(((int)( obstacle.getLayoutX()+obstacle.getX()) >birdPositionX-5)){
+
+                    return true;
+
+                }}}
         }
         return false;
     }

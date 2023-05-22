@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends javafx.application.Application {
     @Override
@@ -13,7 +14,7 @@ public class HelloApplication extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getRoot().requestFocus();
         stage.setTitle("Flappy Bird!");
-
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
