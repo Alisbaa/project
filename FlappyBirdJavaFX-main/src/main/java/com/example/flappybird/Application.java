@@ -27,7 +27,7 @@ public void ShowBaseWindow() {
         Scene sceneMenu = new Scene(fxmlLoaderMenu.load());
 
         sceneMenu.getRoot().requestFocus();
-     
+        sceneMenu.getStylesheets().add(getClass().getResource("menustyle.css").toExternalForm());
         
         stage.setTitle("Flappy Bird!");
         stage.setScene(sceneMenu);

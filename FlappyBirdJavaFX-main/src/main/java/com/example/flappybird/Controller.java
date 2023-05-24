@@ -39,6 +39,9 @@ public class Controller implements Initializable {
     private int gameTime = 0;
     private int scoreCounter = 0;
 
+    Application app = new Application();
+    
+
     public static double obstacleAcceleration = 0;
     private Bird birdComponent;
     private ObstaclesHandler obstaclesHandler;
@@ -107,8 +110,12 @@ public class Controller implements Initializable {
 
         if(birdComponent.isBirdDead(obstacles, plane)){
            //GameOver();
+          
+          gameLoop.stop();
           resetGame();
+          app.ShowBaseWindow();
         }
+        
     }
 
     //Everything called once, at the game start

@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 
 public class Bird {
-
+    
     private Rectangle bird;
     private int jumpHeight;
     CollisionHandler collisionHandler = new CollisionHandler();
@@ -33,9 +33,12 @@ public class Bird {
         double birdY = bird.getLayoutY() + bird.getY();
 
         if(collisionHandler.collisionDetection(obstacles, bird)){
+            
             return  true;
+            
         }
 
         return birdY >= plane.getHeight();
+        
     }
 }
